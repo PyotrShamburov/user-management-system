@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+</head>
+<body>
+<div th:include="_header.html"></div>
+<div class="container" style="text-align: -webkit-center">
+    <p class="fw-bolder">
+        CHANGE USER INFORMATION
+    </p>
+    <form class="row g-3" th:action="@{/user/edit}" th:object="${newUserAccountDTO}" method="post">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <label class="form-label">USERNAME</label>
+                        <p class="fw-bolder" th:text="${currentUserAccount.username}"></p>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label">NEW USERNAME</label>
+                        <input type="text" class="form-control" th:field="*{username}">
+                        <p style="color: red" th:if="${errors?.containsKey('username')}" th:text="${errors?.get('username')}"></p>
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <label class="form-label">PASSWORD</label>
+                        <p th:text="${currentUserAccount.password}"></p>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label">NEW PASSWORD</label>
+                        <input type="password" class="form-control" th:field="*{password}">
+                        <p style="color: red" th:if="${errors?.containsKey('password')}" th:text="${errors?.get('password')}"></p>
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <label class="form-label">FIRST NAME</label>
+                        <p class="fw-bolder" th:text="${currentUserAccount.firstName}"></p>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label">NEW FIRST NAME</label>
+                        <input type="text" class="form-control" th:field="*{firstName}">
+                        <p style="color: red" th:if="${errors?.containsKey('firstName')}" th:text="${errors?.get('firstName')}"></p>
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <label class="form-label">LAST NAME</label>
+                        <p class="fw-bolder" th:text="${currentUserAccount.lastName}"></p>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label">NEW LAST NAME</label>
+                        <input type="text" class="form-control" th:field="*{lastName}">
+                        <p style="color: red" th:if="${errors?.containsKey('lastName')}" th:text="${errors?.get('lastName')}"></p>
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <label class="form-label">ROLE</label>
+                        <p class="fw-bolder" th:text="${currentUserAccount.role}"></p>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label">NEW ROLE</label>
+                        <select class="form-select" aria-label="Default select example" th:field="*{role}">
+                            <option th:each="role : ${roles}"
+                                    th:value="${role.name()}"
+                                    th:text="${role.name()}">
+                            </option>
+                        </select>
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <label class="form-label">STATUS</label>
+                        <p class="fw-bolder" th:text="${currentUserAccount.userStatus}"></p>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label">New Status</label>
+                        <select class="form-select" aria-label="Default select example" th:field="*{userStatus}">
+                            <option th:each="userStatus : ${userStatuses}"
+                                    th:value="${userStatus.name()}"
+                                    th:text="${userStatus.name()}">
+                            </option>
+                        </select>
+                    </div>
+                    </div>
+                </li>
+            </ul>
+        <input type="hidden" name="id" th:value="${currentUserAccount.id}">
+        <div class="wrapper">
+            <button type="submit" style="width: 20%" class="btn btn-outline-success">Edit!</button>
+        </div>
+    </form>
+    <p style="color: green" th:text="${result}"></p>
+</div>
+</body>
+</html>

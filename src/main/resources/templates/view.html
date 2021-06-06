@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+<div th:include="_header.html"></div>
+<div class="alert alert-danger" role="alert" style="alignment: center" th:if="${notChanged==true}">
+    <h4 class="alert-heading">This status already set!</h4>
+</div>
+<div class="alert alert-success" role="alert" th:if="${changed==true}">
+    <h4 class="alert-heading">Status successfully changed!</h4>
+</div>
+<div class="container" style="text-align: -webkit-center" sec:authorize="hasAuthority('USER')">
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Role</th>
+        <th scope="col">Status</th>
+        <th scope="col">Created at</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row" th:text="${user.id}"></th>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.role}"></td>
+        <td th:text="${user.userStatus}"></td>
+        <td th:text="${user.createdAt}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<div class="container" style="text-align: -webkit-center" sec:authorize="hasAuthority('ADMIN')">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Password</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Status</th>
+            <th scope="col">Created at</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row" th:text="${user.id}"></th>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.role}"></td>
+            <td th:text="${user.userStatus}"></td>
+            <td th:text="${user.createdAt}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="mb-3" style="width: 25%">
+        <form th:action="@{/user/}"  method="post">
+            <label>Change user status!</label>
+            <select class="form-select" aria-label="Default select example" name="userStatus">
+                <option th:each="userStatus : ${userStatuses}"
+                        th:value="${userStatus.name()}"
+                        th:text="${userStatus.name()}">
+                </option>
+            </select>
+            <input type="hidden" name="id" th:value="${user.id}">
+            <button type="submit" class="btn btn-outline-dark">Change!</button>
+        </form>
+    </div>
+    <div>
+        <a class="nav-link" th:href="@{'/user/'+${user.id}+'/edit'}" >
+            <button type="submit" class="btn btn-outline-dark">Edit User Information!</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>

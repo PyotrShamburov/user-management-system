@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Authorization</title>
+</head>
+<body>
+<div th:include="_header.html"></div>
+<div class="container" style="text-align: -webkit-center">
+    <form th:action="@{/login}" method="post">
+        <div class="mb-3" style="width: 25%">
+            <label style="text-align: left" class="form-label">Username :</label>
+            <input type="text" class="form-control" name="username" placeholder="username">
+        </div>
+        <div class="mb-3" style="width: 25%">
+            <label style="text-align: left" class="form-label"> Password: </label>
+            <input type="password" class="form-control" name="password" placeholder="password">
+        </div>
+        <div align="center" th:if="${param.error}">
+            <p style="color:red;">LOGIN OR PASSWORD IS INVALID</p>
+        </div>
+        <button type="submit" class="btn btn-outline-success">Sing in!</button>
+    </form>
+</div>
+</body>
+</html>
