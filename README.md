@@ -1,6 +1,5 @@
 # user-management-system
-The system is a WEB application that provides an interface
-user management.<br>
+The system is a WEB application that provides an user management interface.<br>
 <br>
 In project used follows technologies:<br>
 <br>
