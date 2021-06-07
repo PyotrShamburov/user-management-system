@@ -17,7 +17,7 @@
             <input type="password" class="form-control" name="password" placeholder="password">
         </div>
         <div align="center" th:if="${param.error}">
-            <p style="color:red;">LOGIN OR PASSWORD IS INVALID</p>
+            <p style="color:red;">LOGIN/PASSWORD IS INVALID OR ACCOUNT IS LOCKED</p>
         </div>
         <button type="submit" class="btn btn-outline-success">Sing in!</button>
     </form>
