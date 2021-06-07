@@ -17,11 +17,13 @@ In project used follows technologies:<br>
 - Bootstrap<br>
 <br>
 The role model implements in project and they have follows ability: <br>
+ <br>
 - USER :<br>
  - Authorization(login)<br>
  - View all available users(list)<br>
  - View details of anybody user(view)<br>
  - Logout(logout)<br>
+  <br>
 - ADMIN :<br>
  - Authorization(login)<br>
  - View all available users(list)<br>
